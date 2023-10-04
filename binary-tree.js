@@ -14,17 +14,65 @@ class BinaryTreeNode {
    * a node with less than two children. */
   minDepthToIncompleteNode() {
 
+    if(!this.left || !this.right) return 1
+
+    let leftDepth =0
+    let rightDepth=0
+
+    if( this.left){
+      leftDepth=this.left.minDepthToIncompleteNode()
+
+    }
+    if(this.right){
+      rightDepth=this.right.minDepthToIncompleteNode()
+    }
+
+    let totalDepth = Math.min(leftDepth,rightDepth)+1;
+
+    return totalDepth
+
+    // let count = 0;
+    // let queue = [this];
+
+    // while (queue.length){
+    //   console.log("queue length",queue.length,"count",count)
+    //   if (queue.length % 2 === 1) { count++; }
+    //   const curr = queue.pop()
+
+    //   if (curr.left && curr.right) {
+    //     queue.shift(curr.left);
+    //     queue.shift(curr.right);
+    //   }
+    // }
+    // return count;
+
   }
 
   /** maxDepth(): return the maximum depth from the invoking node -- that is,
    * the length of the longest path from the invoking node to a leaf. */
   maxDepth() {
 
+    if(!this.left && !this.right) return 1
+
+    let leftDepth =0
+    let rightDepth=0
+
+    if( this.left){
+      leftDepth=this.left.maxDepth()
+
+    }
+    if(this.right){
+      rightDepth=this.right.maxDepth()
+    }
+
+    let totalDepth = Math.max(leftDepth,rightDepth)+1;
+
+    return totalDepth
   }
 
   /** minDepth(): return the minimum depth from the invoking node -- that is,
    * the length of the shortest path from the invoking node to a leaf. */
-   minDepth() {
+  minDepth() {
 
   }
 
@@ -48,7 +96,8 @@ class BinaryTree {
   // this is a stack or recursion problem; we'll use recursion
 
   minDepthToIncompleteNode() {
-
+    if (!this.root) return 0;
+    return this.root.minDepthToIncompleteNode();
   }
 
   /** maxDepth(): return the maximum depth of the tree -- that is,
@@ -57,7 +106,8 @@ class BinaryTree {
   // this is a stack or recursion problem; we'll use recursion
 
   maxDepth() {
-
+    if (!this.root) return 0;
+    return this.root.maxDepth();
   }
 
   /** minDepth(): return the minimum depth of the tree -- that is,

@@ -2,13 +2,25 @@
 
 const { BinaryTree, BinaryTreeNode } = require("./binary-tree");
 
+let tinyTree;
 let smallTree;
 let largeTree;
 let emptyTree;
 let longTree;
 
 beforeEach(function() {
+
   emptyTree = new BinaryTree();
+
+  // build tiny tree
+  //
+  //          root
+  //            |
+  //            6
+  //
+
+  let tinyRoot= new BinaryTreeNode(6);
+  tinyTree = new BinaryTree(tinyRoot);
 
   // build small tree
   //
@@ -73,6 +85,10 @@ beforeEach(function() {
 });
 
 describe("minDepthToIncompleteNode", function() {
+  it("handles tiny trees", function() {
+    expect(tinyTree.minDepthToIncompleteNode()).toBe(1);
+  });
+
   it("handles simple trees", function() {
     expect(smallTree.minDepthToIncompleteNode()).toBe(2);
   });
