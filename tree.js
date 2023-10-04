@@ -11,7 +11,14 @@ class TreeNode {
   /** sumValues(): add up all values of invoking node and its children.
    * Returns sum as an integer. */
   sumValues() {
+    //base case = node with no children
+    let sum = this.val || 0;
 
+    for (let child of this.children){
+      sum += child.sumValues()
+    }
+
+    return sum;
   }
 
   /** countEvens(): starting from the invoking node and moving through its
@@ -36,7 +43,8 @@ class Tree {
 
   /** sumValues(): add up all values in the tree. */
   sumValues() {
-
+    if (this.root) return this.root.sumValues()
+    return 0;
   }
 
   /** countEvens(): count all nodes in the tree that have even values. */
